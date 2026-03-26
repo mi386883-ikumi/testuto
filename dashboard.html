@@ -261,6 +261,116 @@
       color: var(--text-sub);
       border-top: 1px solid var(--border);
     }
+
+    /* ── Talk Manual ── */
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tab-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      background: var(--card);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    .tab-pane { display: none; margin-bottom: 20px; }
+    .tab-pane.active { display: block; }
+
+    .talk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .talk-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .talk-header {
+      background: var(--primary-lt);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .talk-phase {
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--primary);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .talk-scene {
+      font-size: 13px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .talk-goal {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .goal-trust  { background: #e3f2fd; color: #1565c0; }
+    .goal-edu    { background: #f3e5f5; color: #6a1b9a; }
+    .goal-value  { background: #e8f5e9; color: #2e7d32; }
+    .goal-repeat { background: #fff3e0; color: #e65100; }
+
+    .talk-body { padding: 14px 16px; }
+
+    .script-block {
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .script-block.good { background: #f0faf4; border-left: 4px solid var(--primary); }
+    .script-block.bad  { background: var(--danger-lt); border-left: 4px solid var(--danger); }
+    .script-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      color: var(--text-sub);
+    }
+    .script-block p { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+    .analysis-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 5px;
+    }
+    .analysis-row.warn { color: #c77c00; }
+    .analysis-icon { flex-shrink: 0; }
+
+    .score-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px 12px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .score-label { font-size: 11px; color: var(--text-sub); white-space: nowrap; }
+    .score-track { flex: 1; background: var(--border); border-radius: 20px; height: 8px; overflow: hidden; }
+    .score-fill  { height: 100%; background: var(--primary); border-radius: 20px; }
+    .score-val   { font-size: 11px; font-weight: 700; color: var(--primary); white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -477,6 +587,547 @@
     </div>
   </div>
 
+  <!-- ── 4. トークマニュアル分析シート ── -->
+  <p class="section-title"><span>💬</span> リピートを生むトークマニュアル 分析シート</p>
+
+  <!-- タブナビ -->
+  <div class="tab-nav" id="talkTabs">
+    <button class="tab-btn active" data-tab="t1">初回来院</button>
+    <button class="tab-btn" data-tab="t2">施術中</button>
+    <button class="tab-btn" data-tab="t3">施術後・お見送り</button>
+    <button class="tab-btn" data-tab="t4">次回予約・電話</button>
+    <button class="tab-btn" data-tab="t5">長期未来院フォロー</button>
+  </div>
+
+  <!-- ── Tab: 初回来院 ── -->
+  <div class="tab-pane active" id="t1">
+    <div class="talk-grid">
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">STEP 1</span>
+          <span class="talk-scene">受付・迎え入れ</span>
+          <span class="talk-goal goal-trust">目的：第一印象・安心感</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「〇〇様、本日はご来院ありがとうございます。初めてのご来院ですね、どうぞリラックスしてお越しください。まず少しお身体の状態をお聞きしてもよろしいでしょうか？」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「はい、どうぞ。問診票に記入してお待ちください。」（機械的・冷たい印象）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>名前を呼ぶことで「自分が大切にされている」感を生む</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「リラックスして」の一言が緊張をほぐし、施術効果を高める</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>初回は特に「この院は私を診てくれる」という個別感が重要</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:85%"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">STEP 2</span>
+          <span class="talk-scene">問診・ヒアリング</span>
+          <span class="talk-goal goal-trust">目的：信頼構築・課題共有</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「いつ頃から、どんなきっかけでお悩みになりましたか？お仕事や日常でこんなことができなくなって困っている、というのはありますか？」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「どこが痛いですか？」だけで終わる（表面的な症状しか聞かない）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「いつから」「きっかけ」で根本原因の仮説を立てる姿勢を見せる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「日常でできないこと」を聞くと目標が明確になり、改善後の喜びが大きくなる</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>症状だけでなく「生活の質（QOL）への影響」まで深掘りすることが重要</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:90%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">STEP 3</span>
+          <span class="talk-scene">施術説明（開始前）</span>
+          <span class="talk-goal goal-edu">目的：納得感・期待値設定</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「今日は〇〇の部分が特に硬くなっていますね。これが△△の痛みの原因と考えられます。まず今日は□□を中心にアプローチして、どのくらい変化が出るか一緒に確認しましょう。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「では始めますね。」（説明なしに施術開始する）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「原因の仮説→アプローチ→確認」の流れで専門性をアピール</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「一緒に確認しましょう」で患者を施術の共同参加者にする</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>専門用語を使いすぎず、患者が理解できる言葉で伝えること</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:80%"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tab: 施術中 ── -->
+  <div class="tab-pane" id="t2">
+    <div class="talk-grid">
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術中 A</span>
+          <span class="talk-scene">体感の確認・共感</span>
+          <span class="talk-goal goal-trust">目的：安心感・効果実感</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「ここを触ると張り感はありますか？今、だんだんほぐれてきているのが分かりますか？」「力加減はいかがですか？遠慮なく教えてください。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>無言で施術し続ける／「痛かったら言ってください」だけで終わる</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>変化を言語化することで「効いている」という実感が生まれる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>力加減の確認が「この院は私の感覚を尊重してくれる」という信頼につながる</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>会話しすぎてリラックスを妨げないよう、ペース配分に注意</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:78%"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術中 B</span>
+          <span class="talk-scene">生活習慣・原因の教育</span>
+          <span class="talk-goal goal-edu">目的：通院継続の動機づけ</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「この部分の硬さは、デスクワークの姿勢が長く続くと溜まりやすいんです。今日施術してもらうことで一時的に楽になりますが、根本的に改善するには何度か続けると身体が覚えてくれます。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「とにかく続けることが大切です。」（理由の説明がない押しつけ感）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「なぜ通い続けるのか」の理由を自然な流れで説明できる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「身体が覚える」という表現が分かりやすく継続意欲を引き出す</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>「売り込み」に聞こえないよう、あくまで教育・情報提供のトーンで</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:88%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術中 C</span>
+          <span class="talk-scene">セルフケアのアドバイス</span>
+          <span class="talk-goal goal-value">目的：来院価値の付加</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「今日お伝えしたいのですが、お仕事の合間に〇〇のストレッチを30秒やるだけで、この部分の張りがかなり違います。次回お越しの前にやってみてもらえると、施術の効果も出やすくなりますよ。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>何もセルフケアを教えない（院に来ないと何もできない依存関係になる）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「次回お越しの前に」という言葉で自然に次回来院を前提にした会話ができる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>セルフケアを教えることで「この先生は私のことを本当に考えてくれている」という信頼が深まる</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:82%"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tab: 施術後・お見送り ── -->
+  <div class="tab-pane" id="t3">
+    <div class="talk-grid">
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術後 A</span>
+          <span class="talk-scene">ビフォーアフターの確認</span>
+          <span class="talk-goal goal-value">目的：効果実感・満足度UP</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「施術前と比べて、首の動きはいかがでしょう？ゆっくり右に回してみてください。さっきより動く感じはありますか？」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「お疲れ様でした。」で終わる（変化を確認せず帰らせる）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>変化を患者自身に体感させることで「来てよかった」という感情が生まれる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>この体感がSNSの口コミや紹介につながる核心部分</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>変化が小さい場合でも「この部分は改善しました、次回はここをやりましょう」と前向きに伝える</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:92%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術後 B</span>
+          <span class="talk-scene">次回プランの提案</span>
+          <span class="talk-goal goal-repeat">目的：次回予約の獲得</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「今日の施術で〇〇がほぐれました。この状態を維持しつつ、次回は△△にもアプローチしたいと思っています。2週間後くらいにもう一度いらっしゃると効果が定着しやすいですよ。次回の予約はここで取っていきますか？」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「また来てくださいね〜。」（次回の日程を具体的に提案しない）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「今日の成果＋次回の目標」がセットになることで通院計画が見える化される</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「2週間後」という具体的な期間提示が決断を促す</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>押し売りにならないよう、あくまで「提案」のトーンで。断られても笑顔で対応する</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:95%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">施術後 C</span>
+          <span class="talk-scene">お見送り・お礼</span>
+          <span class="talk-goal goal-trust">目的：余韻・口コミ促進</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「本日はありがとうございました。今日の施術後は無理せず、水分をたくさん取ってゆっくりしてください。何か気になることがあれば遠慮なくLINEしてくださいね。お気をつけて。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「ありがとうございました。」の一言で終わる（余韻がない）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>施術後のケアアドバイスが「この先生は帰ってからも気にかけてくれる」という印象を与える</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「LINEしてください」でアフターフォローへの導線を自然に作れる</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:75%"></div></div>
+          <span class="score-val">中〜高</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tab: 次回予約・電話 ── -->
+  <div class="tab-pane" id="t4">
+    <div class="talk-grid">
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">フォロー A</span>
+          <span class="talk-scene">施術翌日のLINEフォロー</span>
+          <span class="talk-goal goal-trust">目的：体調確認・関係強化</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨メッセージ文例</div>
+            <p>「〇〇様、昨日はご来院いただきありがとうございました。今日の体調はいかがですか？施術後は好転反応で少し重だるく感じる方もいらっしゃいますが、2〜3日でスッキリされることが多いです。何かあれば気軽にご連絡ください！」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべき対応</div>
+            <p>次回予約まで何もアクションを取らない（来院して終わりの関係性）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「好転反応」の説明が不安を先回りして解消し、離脱を防ぐ</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>翌日フォローは「忘れられていない」という特別感を生む最高コスパの施策</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:89%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">フォロー B</span>
+          <span class="talk-scene">次回予約リマインド電話</span>
+          <span class="talk-goal goal-repeat">目的：来院促進・離脱防止</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク（次回予約がある場合）</div>
+            <p>「〇〇様、明日のご予約のご確認でご連絡しました。ご都合はいかがでしょうか？前回から△△のストレッチはやってみましたか？明日は続きをしっかりやりましょう。お待ちしております。」</p>
+          </div>
+          <div class="script-block good">
+            <div class="script-label">推奨トーク（予約がない場合）</div>
+            <p>「〇〇様、先日はありがとうございました。その後いかがでしょうか？前回、△△が気になるとおっしゃっていたので、ご都合が合えばぜひまた来ていただけると嬉しいです。」</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「前回のセルフケアは？」という一言で「ちゃんと覚えてくれている」という信頼感を生む</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>電話は出られない場合も多い。LINEとの使い分け、しつこくならない頻度設計が重要</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:84%"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">フォロー C</span>
+          <span class="talk-scene">継続コース・料金プランの説明</span>
+          <span class="talk-goal goal-value">目的：継続契約・LTV向上</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「〇〇様の状態だと、3ヶ月ほど定期的にケアを続けると根本からの改善が期待できます。毎回都度払いより、月2回コースにしていただくと1回あたり〇円お得になります。ご検討いただけますか？」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「コースはいかがですか？」（状態に合わせた理由がない唐突な提案）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「〇〇様の状態だと」という個別化された提案が押し売り感をなくす</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>3回目以降の来院のタイミングが最も成約しやすい黄金ポイント</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:91%"></div></div>
+          <span class="score-val">最高</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tab: 長期未来院フォロー ── -->
+  <div class="tab-pane" id="t5">
+    <div class="talk-grid">
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">再来院 A</span>
+          <span class="talk-scene">1〜2ヶ月未来院へのLINE</span>
+          <span class="talk-goal goal-repeat">目的：再来院のきっかけ作り</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨メッセージ文例</div>
+            <p>「〇〇様、ご無沙汰しております。その後、〇〇の調子はいかがでしょうか？季節の変わり目は特に体が疲れやすい時期です。もし気になることがあればいつでもご来院くださいね。」</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「季節の変わり目」など外部要因を使うと自然なきっかけになる</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「気になることがあれば」という緩い誘いが圧力にならず返信しやすい</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:70%"></div></div>
+          <span class="score-val">中〜高</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">再来院 B</span>
+          <span class="talk-scene">3ヶ月以上未来院へのDM</span>
+          <span class="talk-goal goal-repeat">目的：休眠顧客の再活性化</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨メッセージ文例</div>
+            <p>「〇〇様、なおる整体の△△です。しばらくお越しいただいていないのでご連絡しました。前回は腰のお悩みでいらっしゃっていましたが、その後どうなりましたか？もし再度気になるようであれば、ぜひお声がけください。今月中のご来院で〇〇分無料延長のご優待をお送りしております。」</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「前回は〇〇でいらっしゃっていましたが」で記録を覚えていることを示す</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>特典（優待）は「今月中」と期限を設けることで行動を促す</span>
+          </div>
+          <div class="analysis-row warn">
+            <span class="analysis-icon">⚠️</span>
+            <span>一方的な売り込みにならないよう、まず「どうでしたか？」という関心ファーストの姿勢で</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:65%"></div></div>
+          <span class="score-val">中</span>
+        </div>
+      </div>
+
+      <div class="talk-card">
+        <div class="talk-header">
+          <span class="talk-phase">再来院 C</span>
+          <span class="talk-scene">再来院時の迎え入れ</span>
+          <span class="talk-goal goal-trust">目的：継続率の回復</span>
+        </div>
+        <div class="talk-body">
+          <div class="script-block good">
+            <div class="script-label">推奨トーク</div>
+            <p>「〇〇様、お久しぶりですね！前回から〇ヶ月ですね。その後いかがでしたか？また来ていただけて嬉しいです。今日はしっかり診させてください。」</p>
+          </div>
+          <div class="script-block bad">
+            <div class="script-label">避けるべきトーク</div>
+            <p>「久しぶりですね〜（なぜ来なかったの？）」という雰囲気を出す（罪悪感を与える）</p>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「また来ていただけて嬉しい」で来院のポジティブな感情を強化する</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-icon">✅</span>
+            <span>「なぜ来なかったか」は絶対に責めない。来てくれたことだけを喜ぶ</span>
+          </div>
+        </div>
+        <div class="score-bar-wrap">
+          <span class="score-label">リピート貢献度</span>
+          <div class="score-track"><div class="score-fill" style="width:86%"></div></div>
+          <span class="score-val">高〜最高</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- トークスコアサマリー -->
+  <div class="card" style="margin-bottom:28px;">
+    <h3>トーク場面別 リピート貢献度サマリー</h3>
+    <div class="bar-chart" style="margin-top:10px;">
+      <div class="bar-row"><div class="bar-row-label">次回予約の提案</div><div class="bar-row-wrap"><div class="bar-row-fill" style="width:95%"><span>95%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">翌日LINEフォロー</div><div class="bar-row-wrap"><div class="bar-row-fill" style="width:89%"><span>89%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">問診・ヒアリング</div><div class="bar-row-wrap"><div class="bar-row-fill" style="width:90%"><span>90%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">ビフォーアフター確認</div><div class="bar-row-wrap"><div class="bar-row-fill" style="width:92%"><span>92%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">継続理由の教育</div><div class="bar-row-wrap"><div class="bar-row-fill" style="width:88%"><span>88%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">受付・第一印象</div><div class="bar-row-wrap"><div class="bar-row-fill accent" style="width:85%"><span>85%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">再来院時の迎え入れ</div><div class="bar-row-wrap"><div class="bar-row-fill accent" style="width:86%"><span>86%</span></div></div></div>
+      <div class="bar-row"><div class="bar-row-label">長期未来院フォロー</div><div class="bar-row-wrap"><div class="bar-row-fill danger" style="width:65%"><span>65%</span></div></div></div>
+    </div>
+  </div>
+
   <!-- ── 4. 施策カード ── -->
   <p class="section-title"><span>🎯</span> 改善施策一覧</p>
   <div class="strategy-grid">
@@ -667,6 +1318,17 @@
   const d = new Date();
   const opts = { year:'numeric', month:'long', day:'numeric', weekday:'short' };
   document.getElementById('today').textContent = d.toLocaleDateString('ja-JP', opts);
+
+  // タブ切り替え
+  document.getElementById('talkTabs').addEventListener('click', function(e) {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(target).classList.add('active');
+  });
 </script>
 </body>
 </html>
